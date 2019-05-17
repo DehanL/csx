@@ -1,0 +1,70 @@
+//@import "normalize.scss";
+@import "variables.scss";
+@import "mixins.scss";
+@import "containers.scss";
+// @import "buttons.scss";
+@import "forms.scss";
+@import "typography.scss";
+@import "landing.scss";
+
+a{
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.bg-primary{
+  background: linear-gradient(to left, $primary, $secondary);
+}
+
+.bg-even{
+  background-color: white;
+}
+
+.bg-odd{
+  background-color: $background-alt;
+  border-top: 1px solid $line;
+  border-bottom: 1px solid $line;
+}
+
+.content-img{
+  width: 100px;
+  margin-bottom: 20px;
+}
+
+.content-section{
+  padding: 28pt;
+  @media(min-width: 768px){
+    padding: 48pt;
+  }
+}
+
+.page-header{
+  margin-top: 48px;
+}
+
+.content-container{
+  h1{
+    max-width: 500px;
+  }
+
+  p{
+    max-width: 700px;
+  }
+}
+
+
+ul{
+    &.no-bullets{
+        list-style-type:none
+    }
+
+    &.inline-list{
+        display: flex;
+        justify-content: center;
+
+        li{
+            margin: 10px;
+        }
+
+    }
+}

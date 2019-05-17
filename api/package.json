@@ -1,0 +1,31 @@
+{
+  "name": "Node-server",
+  "version": "1.0.0",
+  "description": "node express server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "babel src --out-dir dist",
+    "dev-start": "babel-watch server.js"
+  },
+  "author": "Olawale Aladeusi",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "moment": "^2.22.2",
+    "pg": "^7.4.3",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7",
+    "make-runnable": "^1.3.6",
+    "nodemon": "^1.18.11"
+  }
+}
