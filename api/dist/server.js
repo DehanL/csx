@@ -14,9 +14,9 @@ var _User = require('./controller/User');
 
 var _User2 = _interopRequireDefault(_User);
 
-var _Pricelist = require('./controller/Pricelist');
+var _Tas = require('./controller/Tas');
 
-var _Pricelist2 = _interopRequireDefault(_Pricelist);
+var _Tas2 = _interopRequireDefault(_Tas);
 
 var _cors = require('cors');
 
@@ -51,7 +51,7 @@ app.post('/api/v1/user/login', _User2.default.login);
 // app.post('/api/v1/users/login', UserWithDb.login);
 // app.delete('/api/v1/users/me', Auth.verifyToken, UserWithDb.delete);
 
-app.get('/api/v1/pricelist', _Pricelist2.default.getAll);
+app.get('/api/v1/tas/getctcs', _Tas2.default.getCtcs);
 
 app.listen(3000);
 console.log('app running on port ', 3000);

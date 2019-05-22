@@ -6,26 +6,21 @@
       b-navbar-toggle(target='nav_collapse')
       b-collapse#nav_collapse(is-nav='')
         b-navbar-nav
-          router-link(:to="{name: 'pricing'}", role="button") Pricing
-          router-link(:to="{name:'faq'}") FAQ
+          router-link(:to="{name: 'connect'}") Connect
         b-navbar-nav.ml-auto
-          //b-nav-item(href='#')
-            router-link(:to="{name:'faq'}")
-              i.fa.fa-question
-          //b-nav-item(href='#')
-            router-link(:to="{name:'contact'}")
-              i.fa.fa-phone
+          b-nav-item(href='#')
+            a
+              i.fa.fa-cog
+          b-nav-item(href='#')
+            a
+              i.fa.fa-bell
+          b-nav-item(href='#')
+            a
+              i.fa.fa-bullseye
           b-nav-item(v-show="status.loggedIn")
             a(href="")
               i.mr-2.fa.fa-user
               span Dehan Louw
-          b-nav-item(href='#')
-            b-button(variant="outline-primary", @click="logout", v-show="status.loggedIn") Logout
-          b-nav-item(href='#')
-            router-link(:to="{name:'login'}", v-show="!status.loggedIn") Login
-          b-nav-item(href='#', v-show="!status.loggedIn")
-            b-button(variant="outline-primary")
-              router-link(:to="{name:'register'}") Register
 
 </template>
 

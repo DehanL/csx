@@ -1,14 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import HelloWorld from '@/components/HelloWorld';
-import Home from '@/components/Home';
+import Home from '@/components/views/Home';
 import NotFound from '@/components/error-pages/NotFound';
-import ContactUs from '@/components/pages/ContactUs';
-import FAQ from '@/components/pages/FAQ';
-import Login from '@/components/pages/LoginPage';
-import Register from '@/components/pages/RegisterPage';
-// import ApiTest from '@/components/pages/ApiTest';
-import Pricing from '@/components/pages/Pricing';
+import Login from '@/components/views/LoginPage';
+import Register from '@/components/views/RegisterPage';
+import Connect from '@/components/views/ConnectPage';
 
 Vue.use(Router);
 
@@ -31,19 +27,9 @@ const router = new Router({
       component: Register,
     },
     {
-      path: '/contact',
-      name: 'contact',
-      component: ContactUs,
-    },
-    {
-      path: '/faq',
-      name: 'faq',
-      component: FAQ,
-    },
-    {
-      path: '/pricing',
-      name: 'pricing',
-      component: Pricing,
+      path: '/connect',
+      name: 'connect',
+      component: Connect,
     },
     {
       path: '*',
@@ -56,7 +42,7 @@ const router = new Router({
 // eslint-disable-next-line consistent-return
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/register'];
+  const publicPages = ['/login', '/register', '/connect'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

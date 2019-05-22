@@ -5,7 +5,7 @@ import 'babel-polyfill';
 // import ReflectionWithJsObject from './src/usingJSObject/controllers/Reflection';
 // import Reflection from './src/controller/Reflection';
 import User from './controller/User';
-import Pricelist from './controller/Pricelist';
+import Tas from './controller/Tas';
 // import Auth from './src/middleware/Auth';
 import cors from 'cors';
 
@@ -31,7 +31,7 @@ app.post('/api/v1/user/login', User.login);
 // app.post('/api/v1/users/login', UserWithDb.login);
 // app.delete('/api/v1/users/me', Auth.verifyToken, UserWithDb.delete);
 
-app.get('/api/v1/pricelist', Pricelist.getAll);
+app.get('/api/v1/tas/getctcs', Tas.getCtcs);
 
 
 app.listen(3000);

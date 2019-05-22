@@ -1,12 +1,12 @@
 <template lang="pug">
   b-container.page-container
-    div.login-screen.mx-auto
+    div.form-screen.mx-auto
       h2 Login
       form(@submit.prevent='handleSubmit')
         .form-group
-          label(for='email') email
-          input.form-control(type='text', v-model='email', name='email', :class="{ 'is-invalid': submitted && !email }")
-          .invalid-feedback(v-show='submitted && !email') email is required
+          label(for='id') id
+          input.form-control(type='text', v-model='id', name='id', :class="{ 'is-invalid': submitted && !id }")
+          .invalid-feedback(v-show='submitted && !id') id is required
         .form-group
           label(htmlfor='password') Password
           input.form-control(type='password', v-model='password', name='password', :class="{ 'is-invalid': submitted && !password }")
@@ -24,7 +24,7 @@ import { mapState, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      email: '',
+      id: '',
       password: '',
       submitted: false,
     };
@@ -40,9 +40,9 @@ export default {
     ...mapActions('account', ['login', 'logout']),
     handleSubmit() {
       this.submitted = true;
-      const { email, password } = this;
-      if (email && password) {
-        this.login({ email, password });
+      const { id, password } = this;
+      if (id && password) {
+        this.login({ id, password });
       }
     },
   },
@@ -50,10 +50,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .login-screen{
-    max-width: 500px;
-    border: solid $secondary;
-    border-radius: 10px;
-    padding: 20px;
-  }
+
 </style>

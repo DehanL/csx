@@ -1,11 +1,6 @@
 
 import { authHeader } from '../helpers';
 
-console.log(process.env.ROOT_API);
-
-// const config = require('../../build/config');
-
-
 export const userService = {
   login,
   logout,
@@ -16,11 +11,11 @@ export const userService = {
   delete: deleteUser,
 };
 
-function login(email, password) {
+function login(id, password) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ id, password }),
   };
 
   return fetch(`${process.env.ROOT_API}/user/login`, requestOptions)

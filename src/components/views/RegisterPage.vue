@@ -1,6 +1,6 @@
 <template lang="pug">
   b-container.page-container
-    .register-screen.mx-auto
+    .form-screen.mx-auto
       h2 Register
       form(@submit.prevent='handleSubmit')
         .form-group
@@ -12,9 +12,13 @@
           input.form-control(type='text', v-model='user.lastname', v-validate="'required'", name='lastname', :class="{ 'is-invalid': submitted && errors.has('lastname') }")
           .invalid-feedback(v-if="submitted && errors.has('lastname')") {{ errors.first('lastname') }}
         .form-group
-          label(for='email') email
-          input.form-control(type='text', v-model='user.email', v-validate="'required'", name='email', :class="{ 'is-invalid': submitted && errors.has('email') }")
-          .invalid-feedback(v-if="submitted && errors.has('email')") {{ errors.first('email') }}
+          label(for='id') Sap Number
+          input.form-control(type='text', v-model='user.id', v-validate="'required'", name='id', :class="{ 'is-invalid': submitted && errors.has('id') }")
+          .invalid-feedback(v-if="submitted && errors.has('id')") {{ errors.first('id') }}
+        .form-group
+          label(for='email') Role
+          input.form-control(type='text', v-model='user.role', v-validate="'required'", name='role', :class="{ 'is-invalid': submitted && errors.has('role') }")
+          .invalid-feedback(v-if="submitted && errors.has('role')") {{ errors.first('role') }}
         .form-group
           label(htmlfor='password') Password
           input.form-control(type='password', v-model='user.password', v-validate='{ required: true, min: 6 }', name='password', :class="{ 'is-invalid': submitted && errors.has('password') }")
@@ -34,7 +38,8 @@ export default {
       user: {
         firstname: '',
         lastname: '',
-        email: '',
+        id: '',
+        role: '',
         password: '',
       },
       submitted: false,
@@ -58,10 +63,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .register-screen{
-    max-width: 500px;
-    border: solid $secondary;
-    border-radius: 10px;
-    padding: 20px;
-  }
+
 </style>

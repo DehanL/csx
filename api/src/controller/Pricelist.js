@@ -8,7 +8,7 @@ const Pricelist = {
    * @returns {object} pricelist array
    */
   async getAll(req, res) {
-    const findAllQuery = 'SELECT * FROM pricelist';
+    const findAllQuery = 'SELECT * FROM account';
     try {
       const { rows, rowCount } = await db.query(findAllQuery);
       return res.status(200).send({ rows, rowCount });
