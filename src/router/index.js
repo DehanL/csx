@@ -5,6 +5,8 @@ import NotFound from '@/components/error-pages/NotFound';
 import Login from '@/components/views/LoginPage';
 import Register from '@/components/views/RegisterPage';
 import Connect from '@/components/views/ConnectPage';
+import Settings from '@/components/views/SettingsPage';
+import Control from '@/components/views/ControlPage';
 
 Vue.use(Router);
 
@@ -32,6 +34,16 @@ const router = new Router({
       component: Connect,
     },
     {
+      path: '/settings',
+      name: 'settings',
+      component: Settings,
+    },
+    {
+      path: '/control',
+      name: 'control',
+      component: Control,
+    },
+    {
       path: '*',
       name: 'notfound',
       component: NotFound,
@@ -42,7 +54,7 @@ const router = new Router({
 // eslint-disable-next-line consistent-return
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/register', '/connect'];
+  const publicPages = ['/login', '/register'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

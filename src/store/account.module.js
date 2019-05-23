@@ -1,10 +1,10 @@
 import { userService } from '../services';
 import router from '../router';
 
-const user = JSON.parse(localStorage.getItem('user'));
-const state = user
-  ? { status: { loggedIn: true }, user }
-  : { status: {}, user: null };
+const cache = JSON.parse(localStorage.getItem('user'));
+const state = cache
+  ? { status: { loggedIn: true }, user: { id: cache.id } }
+  : { status: { loggedIn: false }, user: { id: '' } };
 
 const actions = {
   login({ dispatch, commit }, { id, password }) {
@@ -25,6 +25,7 @@ const actions = {
   logout({ commit }) {
     userService.logout();
     commit('logout');
+    router.push('/');
   },
   register({ dispatch, commit }, user) {
     commit('registerRequest');

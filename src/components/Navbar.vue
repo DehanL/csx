@@ -6,10 +6,10 @@
       b-navbar-toggle(target='nav_collapse')
       b-collapse#nav_collapse(is-nav='')
         b-navbar-nav
-          router-link(:to="{name: 'connect'}") Connect
-        b-navbar-nav.ml-auto
+          router-link(:to="{name: 'connect'}", v-show="status.loggedIn") Connect
+        b-navbar-nav.ml-auto(v-if="status.loggedIn")
           b-nav-item(href='#')
-            a
+            router-link(:to="{name:'settings'}")
               i.fa.fa-cog
           b-nav-item(href='#')
             a
@@ -17,10 +17,14 @@
           b-nav-item(href='#')
             a
               i.fa.fa-bullseye
-          b-nav-item(v-show="status.loggedIn")
-            a(href="")
+          b-nav-item
+            a.live(@click='logout')
               i.mr-2.fa.fa-user
-              span Dehan Louw
+              span {{ user.id }}
+        b-navbar-nav.ml-auto(v-else)
+          b-nav-item(v-show="!status.loggedIn")
+            router-link(:to="{name:'login'}")
+              b-button(variant="outline-primary", v-show="!status.loggedIn") Login
 
 </template>
 
@@ -30,7 +34,7 @@ import { mapState, mapActions } from 'vuex';
 export default {
   name: 'Navbar',
   computed: {
-    ...mapState('account', ['status']),
+    ...mapState('account', ['status', 'user']),
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
@@ -48,6 +52,9 @@ export default {
 
   .navbar a{
     color: inherit;
+    &.live{
+      color: $primary;
+    }
   }
 
   // Ensure everyting is nicely centered vertically

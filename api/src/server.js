@@ -32,6 +32,9 @@ app.post('/api/v1/user/login', User.login);
 // app.delete('/api/v1/users/me', Auth.verifyToken, UserWithDb.delete);
 
 app.get('/api/v1/tas/getctcs', Tas.getCtcs);
+app.post('/api/v1/tas/getsystems', Tas.getSystems);
+app.post('/api/v1/tas/getstations', Tas.getStations);
+app.post('/api/v1/tas/getobjects', Tas.getObjects);
 
 
 app.listen(3000);

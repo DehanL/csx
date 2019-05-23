@@ -29,8 +29,7 @@ var Tas = {
    */
   getCtcs: function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
-      var query, _ref2, rows, rowCount;
-
+      var query, resp;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -41,22 +40,20 @@ var Tas = {
               return _db2.default.query(query);
 
             case 4:
-              _ref2 = _context.sent;
-              rows = _ref2.rows;
-              rowCount = _ref2.rowCount;
-              return _context.abrupt('return', res.status(200).send({ rows: rows, rowCount: rowCount }));
+              resp = _context.sent;
+              return _context.abrupt('return', res.status(200).send(resp.rows));
 
-            case 10:
-              _context.prev = 10;
+            case 8:
+              _context.prev = 8;
               _context.t0 = _context['catch'](1);
               return _context.abrupt('return', res.status(400).send(_context.t0));
 
-            case 13:
+            case 11:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, this, [[1, 10]]);
+      }, _callee, this, [[1, 8]]);
     }));
 
     function getCtcs(_x, _x2) {
