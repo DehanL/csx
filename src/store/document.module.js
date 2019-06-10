@@ -9,6 +9,7 @@ const state = {
     station: '',
   },
   elements: [],
+  documentTopic: 'ctc/pta/bky/indications',
 };
 
 const getters = {
@@ -18,6 +19,10 @@ const getters = {
 };
 
 const mutations = {
+  processMessage(state, message) {
+    console.log('Processing message now:');
+    console.log(message);
+  },
   openRequest(state) {
     state.documentStatus = 'connecting';
   },
@@ -27,6 +32,7 @@ const mutations = {
     console.log('The elements are: ');
     console.log(data);
     state.elements = data;
+    state.documentTopic = `ctc/${ctc}/${station}/indications`;
   },
   openFail(state) {
     state.documentStatus = 'closed';

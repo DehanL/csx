@@ -6,6 +6,7 @@ const state = {
     status: '',
     error: '',
   },
+  inbox: [],
 };
 
 const getters = {
@@ -29,15 +30,15 @@ const mutations = {
     state.broker.status = 'disconnected';
     state.broker.site = { ctc: '', system: '', station: '' };
   },
+  newMessage(state, message) {
+    state.inbox.push(message);
+  },
 };
 
 const actions = {
-  onMessage(message) {
-    console.log(`A new message can be comitted ${message}`);
-  },
   connect({ commit, rootState }) {
     commit('connectRequest');
-    messageService.connect(rootState.settings.config.mqtt)
+    messageService.connect(rootState.settings.config.mqtt, rootState.document.documentTopic)
       .then(() => {
         commit('connectSuccess');
       },

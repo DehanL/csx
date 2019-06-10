@@ -1,9 +1,9 @@
 const state = {
   config: {
     mqtt: {
-      host: 'test.mosquitto.org',
-      port: 8080,
-      clientId: 'myClient',
+      host: 'broker.mqttdashboard.com',
+      port: 8000,
+      clientId: 'ClientOne',
     },
     db: {
 

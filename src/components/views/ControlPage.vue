@@ -1,5 +1,10 @@
 <template lang="pug">
   b-container.page-container
+    b-container.bg-primary
+      h2 Messages
+      div(v-for='(message, index) in inbox', :key='index')
+        p {{ message.payloadString }}
+        p.text-muted {{ message.topic }}
     b-container.element-container
       signal-element(v-for='element in elements', :key='element.id', :element="element")
 </template>
@@ -20,7 +25,13 @@ export default {
   },
   computed: {
     ...mapState('document', ['documentState', 'documentSite', 'elements']),
+    ...mapState('network', ['inbox']),
   },
+  // watch: {
+  //   inbox() {
+  //     console.log('The times they are chaning');
+  //   },
+  // },
   methods: {
   },
   // computed: {
