@@ -6,19 +6,25 @@
       b-navbar-toggle(target='nav_collapse')
       b-collapse#nav_collapse(is-nav='')
         b-navbar-nav
-          router-link(:to="{name: 'connect'}", v-show="status.loggedIn") Connect
+          b-nav-item
+            router-link(v-if="documentStatus === 'open'", :to="{name: 'control', params: { ctc: documentSite.ctc, system: documentSite.system, station: documentSite.station }}") {{ `${documentSite.ctc} / system ${documentSite.system} / ${documentSite.station}` }}
+            router-link(v-else, :to="{name: 'open'}") Open
         b-navbar-nav.ml-auto(v-if="status.loggedIn")
           b-nav-item(href='#')
-            router-link(:to="{name:'settings'}")
+            router-link(:to="{name:'settings'}", title='Settings')
               i.fa.fa-cog
-          b-nav-item(href='#')
+          b-nav-item |
+          b-nav-item(href='#', title='Notifications')
             a
               i.fa.fa-bell
           b-nav-item(href='#')
-            a
-              i.fa.fa-bullseye
+            a(:class="{active: broker.status === 'connected', busy: broker.status === 'connecting'}", @click=('toggleConnect'), title='Mqtt')
+              i.fa.fa-broadcast-tower
           b-nav-item
-            a.live(@click='logout')
+            a(:class="{active: documentStatus === 'open'}", @click='close', title='Document')
+              i.mr-2.fa.fa-file
+          b-nav-item
+            a(:class="{active: status.loggedIn}", @click='logout', title='User')
               i.mr-2.fa.fa-user
               span {{ user.id }}
         b-navbar-nav.ml-auto(v-else)
@@ -35,9 +41,20 @@ export default {
   name: 'Navbar',
   computed: {
     ...mapState('account', ['status', 'user']),
+    ...mapState('document', ['documentStatus', 'documentSite', 'elements']),
+    ...mapState('network', ['broker']),
   },
   methods: {
     ...mapActions('account', ['login', 'logout']),
+    ...mapActions('document', ['close']),
+    ...mapActions('network', ['connect', 'disconnect']),
+    toggleConnect() {
+      if (this.broker.status === 'connected') {
+        this.disconnect();
+      } else {
+        this.connect();
+      }
+    },
   },
 };
 </script>
@@ -52,8 +69,11 @@ export default {
 
   .navbar a{
     color: inherit;
-    &.live{
+    &.active{
       color: $primary;
+    }
+    &.busy{
+      animation: pulse linear 0.2s infinite;
     }
   }
 
@@ -62,4 +82,9 @@ export default {
     display: flex;
     align-items: center;
   }
+
+  @keyframes pulse {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
 </style>

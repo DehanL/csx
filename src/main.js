@@ -2,8 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import App from './App';
-import router from './router';
 import store from './store';
+import router from './router';
 
 // import axios from 'axios';
 // import HTTP from './http-common';
@@ -18,9 +18,6 @@ import VeeValidate from 'vee-validate';
 // import dotenv from 'dotenv';
 
 // dotenv.config();
-
-console.log(process.env.ROOT_API);
-
 Vue.config.productionTip = false;
 // Vue.prototype.$http = axios;
 

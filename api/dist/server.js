@@ -52,6 +52,10 @@ app.post('/api/v1/user/login', _User2.default.login);
 // app.delete('/api/v1/users/me', Auth.verifyToken, UserWithDb.delete);
 
 app.get('/api/v1/tas/getctcs', _Tas2.default.getCtcs);
+app.post('/api/v1/tas/getsystems', _Tas2.default.getSystems);
+app.post('/api/v1/tas/getstations', _Tas2.default.getStations);
+app.post('/api/v1/tas/getobjects', _Tas2.default.getObjects);
+app.post('/api/v1/tas/connect', _Tas2.default.connect);
 
 app.listen(3000);
 console.log('app running on port ', 3000);

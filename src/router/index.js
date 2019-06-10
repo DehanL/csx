@@ -4,9 +4,11 @@ import Home from '@/components/views/Home';
 import NotFound from '@/components/error-pages/NotFound';
 import Login from '@/components/views/LoginPage';
 import Register from '@/components/views/RegisterPage';
-import Connect from '@/components/views/ConnectPage';
+import Open from '@/components/views/OpenPage';
 import Settings from '@/components/views/SettingsPage';
 import Control from '@/components/views/ControlPage';
+
+import store from '@/store';
 
 Vue.use(Router);
 
@@ -29,9 +31,9 @@ const router = new Router({
       component: Register,
     },
     {
-      path: '/connect',
-      name: 'connect',
-      component: Connect,
+      path: '/open',
+      name: 'open',
+      component: Open,
     },
     {
       path: '/settings',
@@ -39,9 +41,10 @@ const router = new Router({
       component: Settings,
     },
     {
-      path: '/control',
+      path: '/control/:ctc/:system/:station',
       name: 'control',
       component: Control,
+      beforeEnter: checkDocumentOpen,
     },
     {
       path: '*',
@@ -64,5 +67,14 @@ router.beforeEach((to, from, next) => {
 
   next();
 });
+
+function checkDocumentOpen(to, from, next) {
+  if (store.getters['document/checkDocumentOpen'] !== 'open') {
+    console.log('The document was deemed not to be open');
+    return next('/open');
+  }
+
+  return next();
+}
 
 export default router;

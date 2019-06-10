@@ -100,7 +100,7 @@ var User = {
    */
   login: function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
-      var text, _ref4, rows, token;
+      var text, _ref4, rows, token, id;
 
       return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -141,19 +141,20 @@ var User = {
 
             case 13:
               token = _Helper2.default.generateToken(rows[0].id);
-              return _context2.abrupt('return', res.status(200).send({ token: token }));
+              id = rows[0].id;
+              return _context2.abrupt('return', res.status(200).send({ token: token, id: id }));
 
-            case 17:
-              _context2.prev = 17;
+            case 18:
+              _context2.prev = 18;
               _context2.t0 = _context2['catch'](4);
               return _context2.abrupt('return', res.status(400).send(_context2.t0));
 
-            case 20:
+            case 21:
             case 'end':
               return _context2.stop();
           }
         }
-      }, _callee2, this, [[4, 17]]);
+      }, _callee2, this, [[4, 18]]);
     }));
 
     function login(_x3, _x4) {

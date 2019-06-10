@@ -1,4 +1,4 @@
-export const tasService = {
+export const apiService = {
   getCtcs,
   getSystems,
   getStations,
@@ -44,5 +44,6 @@ function getObjects(ctc, system, station) {
     body: JSON.stringify({ ctc, system, station }),
   };
 
-  return fetch(`${process.env.ROOT_API}/tas/getObjects`, requestOptions);
+  return fetch(`${process.env.ROOT_API}/tas/getObjects`, requestOptions)
+    .then(response => response.json());
 }

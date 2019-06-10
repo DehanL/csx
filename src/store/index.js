@@ -4,7 +4,9 @@ import Vuex from 'vuex';
 import { alert } from './alert.module';
 import { account } from './account.module';
 import { users } from './users.module';
-import { tas } from './tas.module';
+import { document } from './document.module';
+import { network } from './network.module';
+import { settings } from './settings.module';
 
 Vue.use(Vuex);
 
@@ -13,7 +15,9 @@ const store = new Vuex.Store({
     alert,
     account,
     users,
-    tas,
+    document,
+    network,
+    settings,
   },
 });
 

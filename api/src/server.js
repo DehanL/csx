@@ -35,6 +35,7 @@ app.get('/api/v1/tas/getctcs', Tas.getCtcs);
 app.post('/api/v1/tas/getsystems', Tas.getSystems);
 app.post('/api/v1/tas/getstations', Tas.getStations);
 app.post('/api/v1/tas/getobjects', Tas.getObjects);
+app.post('/api/v1/tas/connect', Tas.connect);
 
 
 app.listen(3000);

@@ -1,5 +1,6 @@
 
 import { authHeader } from '../helpers';
+import store from '../store';
 
 export const userService = {
   login,
@@ -35,6 +36,8 @@ function login(id, password) {
 function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
+  // Also disconnect from any stations
+  store.dispatch('tas/disconnect');
 }
 
 function register(user) {
