@@ -21,9 +21,9 @@ const store = new Vuex.Store({
   },
 });
 
-store.watch(state => state.network.inbox, (val) => {
-  console.log(store);
-  store.commit('document/processMessage', val);
-});
+// store.watch(state => state.network.inbox, (val) => {
+//   console.log(store);
+//   store.commit('document/processMessage', val);
+// });
 
 export default store;

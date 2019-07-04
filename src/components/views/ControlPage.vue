@@ -1,48 +1,31 @@
 <template lang="pug">
-  b-container.page-container
-    b-container.bg-primary
-      h2 Messages
-      div(v-for='(message, index) in inbox', :key='index')
-        p {{ message.payloadString }}
-        p.text-muted {{ message.topic }}
+  b-container.page-container#elements
     b-container.element-container
-      signal-element(v-for='element in elements', :key='element.id', :element="element")
+      element-node(v-for='element in elements', :key='element.id', :element="element")
+
 </template>
 
 <script>
 
 import { mapState } from 'vuex';
-import SignalElement from '@/components/SignalElement';
+import ElementNode from '@/components/ElementNode';
 
 export default {
   name: 'Control',
   components: {
-    SignalElement,
+    ElementNode,
   },
   data() {
     return {
     };
   },
-  computed: {
-    ...mapState('document', ['documentState', 'documentSite', 'elements']),
-    ...mapState('network', ['inbox']),
-  },
-  // watch: {
-  //   inbox() {
-  //     console.log('The times they are chaning');
-  //   },
-  // },
   methods: {
   },
-  // computed: {
-  //   ...mapState('tas', ['objects']),
-  // },
+  computed: {
+    ...mapState('document', ['documentState', 'documentSite', 'elements']),
+    ...mapState('account', ['user']),
+  },
   created() {
-    // const { ctc, system, station } = { ctc: this.$route.params.ctc, system: this.$route.params.system, station: this.$route.params.station };
-    // if (ctc && system && station) {
-    //   this.getObjects(ctc, system, station);
-    // } else {
-    // }
   },
 };
 </script>
@@ -56,4 +39,12 @@ export default {
   .preview{
     width: 80px;
   }
+#elements{
+    .popover{
+    h3 {
+      margin: 0px !important;
+      padding: 0px;
+    }
+  }
+}
 </style>

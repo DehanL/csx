@@ -36,6 +36,8 @@ app.post('/api/v1/tas/getsystems', Tas.getSystems);
 app.post('/api/v1/tas/getstations', Tas.getStations);
 app.post('/api/v1/tas/getobjects', Tas.getObjects);
 app.post('/api/v1/tas/connect', Tas.connect);
+app.post('/api/v1/tas/updateModel', Tas.updateModel);
+app.post('/api/v1/tas/getconfig', Tas.getConfig);
 
 
 app.listen(3000);

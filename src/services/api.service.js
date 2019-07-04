@@ -3,6 +3,7 @@ export const apiService = {
   getSystems,
   getStations,
   getObjects,
+  getConfig,
 };
 
 function getCtcs() {
@@ -45,5 +46,16 @@ function getObjects(ctc, system, station) {
   };
 
   return fetch(`${process.env.ROOT_API}/tas/getObjects`, requestOptions)
+    .then(response => response.json());
+}
+
+function getConfig(station) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ station }),
+  };
+
+  return fetch(`${process.env.ROOT_API}/tas/getConfig`, requestOptions)
     .then(response => response.json());
 }

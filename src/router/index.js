@@ -70,7 +70,6 @@ router.beforeEach((to, from, next) => {
 
 function checkDocumentOpen(to, from, next) {
   if (store.getters['document/checkDocumentOpen'] !== 'open') {
-    console.log('The document was deemed not to be open');
     return next('/open');
   }
 

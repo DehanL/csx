@@ -1,9 +1,17 @@
 const state = {
-  type: null,
-  message: null,
+  alert: {
+    show: false,
+    message: '',
+  },
 };
 
 const actions = {
+  setAlert({ commit }, newalert) {
+    commit('setAlert', newalert);
+    setTimeout(() => {
+      commit('clearAlert');
+    }, 3000);
+  },
   success({ commit }, message) {
     commit('success', message);
   },
@@ -16,6 +24,13 @@ const actions = {
 };
 
 const mutations = {
+  setAlert(state, newalert) {
+    state.alert.message = newalert;
+    state.alert.show = true;
+  },
+  clearAlert(state) {
+    state.alert.show = false;
+  },
   success(state, message) {
     state.type = 'alert-success';
     state.message = message;

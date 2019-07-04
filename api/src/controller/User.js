@@ -52,17 +52,16 @@ const User = {
    */
   async login(req, res) {
     if (!req.body.id || !req.body.password) {
-      console.log(req.body);
       return res.status(400).send({ message: 'Some values are missing' });
     }
     const text = 'SELECT * FROM public.account WHERE id = $1';
     try {
       const { rows } = await db.query(text, [req.body.id]);
       if (!rows[0]) {
-        return res.status(400).send({ message: 'The credentials you provided is incorrect' });
+        return res.status(400).send({ message: 'The credentials you provided are incorrect' });
       }
       if (!Helper.comparePassword(rows[0].password, req.body.password)) {
-        return res.status(400).send({ message: 'The credentials you provided is incorrect' });
+        return res.status(400).send({ message: 'The credentials you provided are incorrect' });
       }
       const token = Helper.generateToken(rows[0].id);
       const id = rows[0].id;

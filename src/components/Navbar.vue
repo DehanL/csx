@@ -26,7 +26,7 @@
           b-nav-item
             a(:class="{active: status.loggedIn}", @click='logout', title='User')
               i.mr-2.fa.fa-user
-              span {{ user.id }}
+              span {{ user.fistname }}
         b-navbar-nav.ml-auto(v-else)
           b-nav-item(v-show="!status.loggedIn")
             router-link(:to="{name:'login'}")

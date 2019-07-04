@@ -30,26 +30,29 @@ const mutations = {
     state.broker.status = 'disconnected';
     state.broker.site = { ctc: '', system: '', station: '' };
   },
-  newMessage(state, message) {
-    state.inbox.push(message);
-  },
 };
 
 const actions = {
-  connect({ commit, rootState }) {
+  connect({ commit, dispatch, rootState }) {
     commit('connectRequest');
+    // Uset the current user as the MQTT client id
+    commit('settings/setClientId', null, { root: true });
     messageService.connect(rootState.settings.config.mqtt, rootState.document.documentTopic)
       .then(() => {
         commit('connectSuccess');
+        dispatch('alert/setAlert', 'Connected to MQTT Broker', { root: true });
       },
       (error) => {
-        console.log(error.toString());
+        dispatch('alert/setAlert', error.toString(), { root: true });
         commit('connectFail', { error: error.toString() });
       },
       );
   },
   disconnect({ commit }) {
     commit('disconnect');
+  },
+  newMessage({ dispatch }, message) {
+    dispatch('document/processMessage', message, { root: true });
   },
 };
 

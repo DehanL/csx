@@ -26,11 +26,12 @@ function login(id, password) {
       if (user.token) {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('user', JSON.stringify(user));
-        console.log(user);
       }
 
       return user;
-    });
+    },
+    error => Promise.reject(error),
+    );
 }
 
 function logout() {
@@ -92,7 +93,6 @@ function deleteUser(id) {
 function handleResponse(response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
-    console.log('Handling the response...');
 
     if (!response.ok) {
       if (response.status === 401) {
