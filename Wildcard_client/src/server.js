@@ -7,9 +7,9 @@ import Model from './controller/Tas';
 const mqtt = require('mqtt');
 
 const config = {
-  host: 'test.mosquitto.org',
-  port: 8080,
-  clientId: 'db_client',
+  host: 'broker.mqttdashboard.com',
+  port: 8000,
+  clientId: 'wildcard_client',
 };
 
 
